@@ -1,0 +1,361 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMaster.master.cs" Inherits="Hotel_Management.SiteMaster" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <%-- <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet" />--%>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet" />
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="bower_components/bootstrap/dist/css/build.css" rel="stylesheet" />
+    <%--  <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>--%>
+    <style type="text/css">
+        .modalBackground {
+            background-color: Black;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+        }
+
+        .modalPopup {
+            background-color: #FFFFFF;
+            border-width: 3px;
+            border-style: solid;
+            border-color: black;
+            padding-top: 10px;
+            padding-left: 10px;
+            width: 50%;
+            height: 75%;
+        }
+    </style>
+    <style type="text/css">
+        .modalPopup1 {
+            position: fixed;
+            z-index: 999;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            background-color: Black;
+            filter: alpha(opacity=60);
+            opacity: 0.6;
+            -moz-opacity: 0.8;
+        }
+    </style>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+        <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
+        <%--<asp:UpdateProgress ID="UpdateProgress" runat="server" AssociatedUpdatePanelID="upmain">
+            <ProgressTemplate>
+                <div class="modalPopup1">
+                    <asp:Image ID="Image1" ImageUrl="~/Image/ajax-loader.gif" Width="50" Height="50" AlternateText="Processing" runat="server" />
+                    <br />
+                    Processing....
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+        <asp:UpdatePanel ID="upmain" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+            <ContentTemplate>--%>
+        <div>
+            <div id="wrapper">
+
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+
+
+                    <div class="col-lg-9">
+                        <div class="container-fluid" style="margin-top: 10px;">
+                            <div class="navbar-header">
+                                <asp:Button runat="server" ID="btnDashboard" Font-Bold="true" PostBackUrl="~/Deshboard.aspx" Text="Dashboard" CssClass="btn btn-outline btn-default" BorderStyle="None" BorderWidth="0" />
+
+                            </div>
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <asp:Button runat="server" ID="btnRoomMaster" Font-Bold="true" PostBackUrl="~/Room.aspx" Text="Room Master" CssClass="btn btn-outline btn-default" BorderStyle="None" BorderWidth="0" /></li>
+                                <li>
+                                    <asp:Button runat="server" ID="btnBooking" Font-Bold="true" PostBackUrl="~/BookingDetail.aspx" Text="New Booking" CssClass="btn btn-outline btn-default" BorderStyle="None" BorderWidth="0" /></li>
+                                <li>
+                                    <asp:Button runat="server" ID="btnInvoice" Font-Bold="true" PostBackUrl="~/Invoice.aspx" Text="Invoice List" CssClass="btn btn-outline btn-default" BorderStyle="None" BorderWidth="0" /></li>
+                                <li>
+                                    <asp:Button runat="server" ID="btnFood" Font-Bold="true" Text="Food Master" PostBackUrl="~/FoodMaster.aspx" CssClass="btn btn-outline btn-default" BorderStyle="None" BorderWidth="0" /></li>
+                                <li>
+                                    <asp:Button runat="server" ID="btnGeneral" Font-Bold="true" Text="General Report" PostBackUrl="~/GeneralReport.aspx" CssClass="btn btn-outline btn-default" BorderStyle="None" BorderWidth="0" /></li>
+                                <li>
+                                    <asp:Button runat="server" ID="btnSales" Font-Bold="true" Text="Sales Report" PostBackUrl="~/SalesReport.aspx" CssClass="btn btn-outline btn-default" BorderStyle="None" BorderWidth="0" /></li>
+                                 <li>
+                                    <asp:Button runat="server" ID="btnFoodReport" Font-Bold="true" Text="Food Report" PostBackUrl="~/FoodReport.aspx" CssClass="btn btn-outline btn-default" BorderStyle="None" BorderWidth="0" /></li>
+                                <li>
+                                    <asp:Button runat="server" ID="btnAdmin" Font-Bold="true" Text="Admin" PostBackUrl="~/Invoice.aspx?isMast=1" CssClass="btn btn-outline btn-default" BorderStyle="None" BorderWidth="0" /></li>
+                            </ul>
+                        </div>
+
+
+
+                    </div>
+
+                    
+                        <asp:UpdatePanel runat="server" ID="TimedPanel" UpdateMode="Conditional">
+                         
+                            <ContentTemplate>
+
+                    <ul class="nav navbar-top-links navbar-right">
+                        <%--<li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-envelope fa-fw"></i><i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Read All Messages</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>--%>
+                        <!-- /.dropdown -->
+
+                          <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-tasks fa-fw"></i><i class="fa fa-caret-down"></i>Today's Summary
+                            </a>
+                            <ul class="dropdown-menu dropdown-tasks">
+                                <asp:DataList runat="server" ID="dlTodaysSummary" CellPadding="5" Width="100%" CellSpacing="5" RepeatColumns="1" RepeatDirection="Horizontal" >
+                                    <ItemStyle VerticalAlign="Top" HorizontalAlign="Center"/>
+                                    <ItemTemplate>
+                                        <li style="height:30px; vertical-align:top;">
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <asp:Label runat="server" ID="lblCustomerName" Text='<%# Eval("CustomerName") %>'></asp:Label>
+                                                <%--<span class="pull-right text-muted">40% Complete</span>--%>
+                                            </p>
+                                            <%--<div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                    <span class="sr-only">40% Complete (success)</span>
+                                                </div>
+                                            </div>--%>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                        
+                                    </ItemTemplate>
+                                </asp:DataList>
+                               <%-- <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>Task 1</strong>
+                                                <span class="pull-right text-muted">40% Complete</span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                    <span class="sr-only">40% Complete (success)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>Task 2</strong>
+                                                <span class="pull-right text-muted">20% Complete</span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                                    <span class="sr-only">20% Complete</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>Task 3</strong>
+                                                <span class="pull-right text-muted">60% Complete</span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                    <span class="sr-only">60% Complete (warning)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>Task 4</strong>
+                                                <span class="pull-right text-muted">80% Complete</span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                    <span class="sr-only">80% Complete (danger)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a class="text-center" href="#">
+                                        <strong>See All Tasks</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </li>--%>
+                            </ul>
+                           
+                        </li>
+
+                        
+
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Alert
+                        <i class="fa fa-tasks fa-fw"></i><i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-tasks">
+                                        
+                                        <li>
+                                            <a href="#">
+                                                <div>
+                                                    <i class="fa fa-comment fa-fw"></i>New Comment
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">
+                                                <div>
+                                                    <i class="fa fa-twitter fa-fw"></i>3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">
+                                                <div>
+                                                    <i class="fa fa-envelope fa-fw"></i>Message Sent
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">
+                                                <div>
+                                                    <i class="fa fa-tasks fa-fw"></i>New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">
+                                                <div>
+                                                    <i class="fa fa-upload fa-fw"></i>Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a class="text-center" href="#">
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.dropdown-alerts -->
+                                </li>
+                               
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+
+
+                        <!-- /.dropdown -->
+                    </ul>
+
+                </nav>
+
+                <!-- Page Content -->
+                <div id="page-wrapper">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                <asp:ContentPlaceHolder ID="cont1" runat="server">
+                                </asp:ContentPlaceHolder>
+
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /#page-wrapper -->
+
+            </div>
+        </div>
+        <%--  </ContentTemplate>
+        </asp:UpdatePanel>--%>
+    </form>
+</body>
+</html>
